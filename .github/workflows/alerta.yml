@@ -1,30 +1,20 @@
 name: Alerta a ntfy
-
-   on:
-     push:
-       branches:
-         - main
-
-   jobs:
-     notificar:
-       runs-on: ubuntu-latest
-       name: Hola mundo y notificacion
-       steps:
-         - name: Checkout del repo
-           uses: actions/checkout@v4
-
-         - name: Configurar Node.js
-           uses: actions/setup-node@v4
-           with:
-             node-version: 20
-
-         - name: Ejecutar hola mundo
-           run: node hello.js
-
-         - name: Enviar notificacion a ntfy
-           run: |
-             curl \
-               -H "Title: Nuevo push en hola-mundo" \
-               -H "Tags: rocket,dog" \
-               -d "Se subio codigo a main. Commit: ${{ github.event.head_commit.message }}" \
-               https://ntfy.sh/devops-itla
+on:
+  push:
+    branches:
+      - main
+jobs:
+  notificar:
+    runs-on: ubuntu-latest
+    name: Hola mundo y notificacion
+    steps:
+      - name: Checkout del repo
+        uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Ejecutar hola mundo
+        run: node hello.js
+      - name: Enviar notificacion a ntfy
+        run: curl -H "Title: Nuevo push en hola-mundo" -d "Se subio codigo a main" https://ntfy.sh/devops-itla
