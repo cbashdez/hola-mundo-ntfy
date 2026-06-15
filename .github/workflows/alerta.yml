@@ -17,4 +17,5 @@ jobs:
       - name: Ejecutar hola mundo
         run: node hello.js
       - name: Enviar notificacion a ntfy
-        run: curl -H "Title: Nuevo push en hola-mundo" -d "Se subio codigo a main" https://ntfy.sh/devops-itla
+        run: |
+          curl -d "Se subio codigo a main en hola-mundo-ntfy" https://ntfy.sh/devops-itla
